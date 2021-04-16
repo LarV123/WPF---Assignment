@@ -2,11 +2,24 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Windows.Input;
 
 namespace MVVM_Assginment {
 	class ItemPenjualanViewModel : INotifyPropertyChanged{
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+
+        private ICommand saveCommand;
+
+        public ICommand SaveCommand {
+			get {
+                if(saveCommand == null) {
+                    saveCommand = new SaveCommand(this);
+				}
+                return saveCommand;
+			}
+		}
 
         private ItemPenjualan model;
 
